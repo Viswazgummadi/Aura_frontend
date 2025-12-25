@@ -5,6 +5,7 @@ import { Send, Sparkles, ChevronUp, Bot, User, Check } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams, useRouter } from "next/navigation";
 import MessageBubble from "../components/MessageBubble";
+import Cookies from "js-cookie";
 
 export const dynamic = 'force-dynamic';
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, MessageSquare, Settings, Sparkles, Menu, X, Trash2, Check, Zap } from "lucide-react";
+import { Plus, MessageSquare, Settings, Sparkles, Menu, X, Trash2, Check, Zap, Calendar as CalendarIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
@@ -248,6 +248,32 @@ export function Sidebar() {
 
             {/* Settings & User Footer */}
             <div className="p-3 border-t border-white/5 space-y-2 overflow-hidden">
+                <Link href="/calendar" className="block">
+                    <motion.div
+                        layout
+                        whileHover={{ scale: 1.02, x: 4, backgroundColor: "rgba(255,255,255,0.05)" }}
+                        whileTap={{ scale: 0.98 }}
+                        className={`w-full flex items-center gap-3 px-3 h-12 rounded-xl text-slate-400 hover:text-slate-200 transition-colors text-left group overflow-hidden whitespace-nowrap relative shrink-0 ${pathname === '/calendar' ? 'bg-white/10 text-white' : ''}`}
+                    >
+                        <motion.div layout className="shrink-0 z-10 flex items-center justify-center w-5 h-5">
+                            <CalendarIcon size={18} className={`group-hover:text-emerald-400 transition-colors ${pathname === '/calendar' ? 'text-emerald-400' : 'text-slate-600'}`} />
+                        </motion.div>
+                        <AnimatePresence>
+                            {isOpen && (
+                                <motion.span
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -10 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="text-sm truncate z-10"
+                                >
+                                    Checkpoints
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
+                </Link>
+
                 <Link href="/debug" className="block">
                     <motion.div
                         layout
