@@ -129,13 +129,16 @@ function ChatContent() {
         // Optimistic UI
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
 
+        const email = Cookies.get("user_email");
+
         try {
             const res = await fetch("http://localhost:8000/api/v1/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     message: userMessage,
-                    thread_id: currentThreadId
+                    thread_id: currentThreadId,
+                    user_email: email
                 }),
             });
 
