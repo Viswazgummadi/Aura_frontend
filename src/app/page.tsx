@@ -170,38 +170,40 @@ function ChatContent() {
     return (
         <div className="flex flex-col h-full bg-slate-950/50 relative">
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-6 pb-40 custom-scrollbar">
-                {messages.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-full text-slate-500 opacity-60">
-                        <Sparkles size={48} className="mb-4 text-indigo-400" />
-                        <p className="text-lg font-medium">Aura Online</p>
-                        <p className="text-sm">Ready to assist.</p>
-                    </div>
-                ) : (
-                    messages.map((msg, idx) => (
-                        <MessageBubble key={idx} role={msg.role} content={msg.content} />
-                    ))
-                )}
-
-                {isLoading && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="flex justify-start px-4"
-                    >
-                        <div className="bg-white/5 rounded-2xl p-4 flex gap-2 items-center">
-                            <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+            <div className="flex-1 overflow-y-auto custom-scrollbar flex flex-col items-center">
+                <div className="w-full max-w-6xl p-4 space-y-6 pb-40">
+                    {messages.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center h-full text-slate-500 opacity-60 min-h-[50vh]">
+                            <Sparkles size={48} className="mb-4 text-indigo-400" />
+                            <p className="text-lg font-medium">Aura Online</p>
+                            <p className="text-sm">Ready to assist.</p>
                         </div>
-                    </motion.div>
-                )}
-                <div ref={messagesEndRef} />
+                    ) : (
+                        messages.map((msg, idx) => (
+                            <MessageBubble key={idx} role={msg.role} content={msg.content} />
+                        ))
+                    )}
+
+                    {isLoading && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="flex justify-start px-2"
+                        >
+                            <div className="bg-white/5 rounded-2xl p-4 flex gap-2 items-center">
+                                <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                                <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                                <div className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                            </div>
+                        </motion.div>
+                    )}
+                    <div ref={messagesEndRef} />
+                </div>
             </div>
 
             {/* Input Area */}
-            <div className="p-4 md:p-6 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent absolute bottom-0 left-0 right-0 z-10">
-                <div className="max-w-6xl mx-auto relative group flex flex-col items-start gap-2">
+            <div className="p-4 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent absolute bottom-0 left-0 right-0 z-10 flex justify-center">
+                <div className="w-full max-w-6xl relative group flex flex-col items-start gap-2">
 
                     {/* Model Selector Pill */}
                     <div className="relative">
